@@ -4,7 +4,7 @@ WORKDIR /sdk
 RUN git clone https://github.com/Microsoft/cpprestsdk.git casablanca && \
       rm -rf casablanca/.git
 
-from alpine as cpprestsdk_compiled
+FROM alpine as cpprestsdk_compiled
 RUN apk add --update \
     boost-dev \
     cmake \
@@ -40,12 +40,3 @@ COPY --from=cpprestsdk_compiled \
 #RUN cd build.release && make install
 
 RUN ls build.release
-
-#WORKDIR /facade
-#COPY . /facade/
-#RUN cmake .
-#
-#FROM ubuntu:18.04
-#
-#RUN apt-get update && \
-#    apt-get install -y libcpprest-dev
